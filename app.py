@@ -40,8 +40,8 @@ As a community effort, this demo was put together by AngryPenguin. Link to model
 """
 
 with gr.Blocks() as demo:
-    gr.Markdown(description)  # Display the description at the top of the interface
     gr.Markdown("## Playground-V2.5 Demo")
+    gr.Markdown(description)
 
     # Prompt on its own row
     with gr.Row():
