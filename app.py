@@ -25,9 +25,9 @@ def generate_image(prompt, num_inference_steps=50, guidance_scale=7):
     results = pipe(prompt=prompt, num_inference_steps=num_inference_steps, guidance_scale=guidance_scale)
 
     # Safety check (if necessary)
-    if SAFETY_CHECKER:
+    #if SAFETY_CHECKER:
         # Implement the safety check logic here
-        pass
+        #pass
 
     return results.images[0]
 
@@ -42,7 +42,7 @@ with gr.Blocks() as demo:
     with gr.Row():
         prompt = gr.Textbox(label='Enter your image prompt')
         num_inference_steps = gr.Slider(minimum=1, maximum=75, step=1, label='Number of Inference Steps', value=50)
-        guidance_scale = gr.Slider(minimum=1, maximum=20, step=0.1, label='Guidance Scale', value=7)
+        guidance_scale = gr.Slider(minimum=1, maximum=10, step=0.1, label='Guidance Scale', value=5)
         submit = gr.Button('Generate Image')
     img = gr.Image(label='Generated Image')
 
