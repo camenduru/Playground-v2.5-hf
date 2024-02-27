@@ -31,6 +31,8 @@ def generate_image(prompt, num_inference_steps=50, guidance_scale=7):
 
     return results.images[0]
 
+import gradio as gr
+
 # Gradio Interface
 description = """
 This demo utilizes the playgroundai/playground-v2.5-1024px-aesthetic by Playground, which is a text-to-image generative model capable of producing high-quality images.
@@ -38,19 +40,28 @@ As a community effort, this demo was put together by AngryPenguin. Link to model
 """
 
 with gr.Blocks() as demo:
+    gr.Markdown(description)  # Display the description at the top of the interface
     gr.Markdown("## Playground-V2.5 Demo")
+
+    # Prompt on its own row
     with gr.Row():
         prompt = gr.Textbox(label='Enter your image prompt')
+
+    # Sliders for inference steps and guidance scale on another row
+    with gr.Row():
         num_inference_steps = gr.Slider(minimum=1, maximum=75, step=1, label='Number of Inference Steps', value=50)
         guidance_scale = gr.Slider(minimum=1, maximum=10, step=0.1, label='Guidance Scale', value=5)
-        submit = gr.Button('Generate Image')
+
+    # Submit button
+    submit = gr.Button('Generate Image')
+
+    # Image output at the bottom
     img = gr.Image(label='Generated Image')
 
     submit.click(
-        fn=generate_image,
+        fn=generate_image,  # This function needs to be defined to generate the image based on the inputs
         inputs=[prompt, num_inference_steps, guidance_scale],
         outputs=img,
     )
-
 
 demo.queue().launch()
