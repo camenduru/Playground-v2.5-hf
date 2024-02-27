@@ -32,6 +32,11 @@ def generate_image(prompt, num_inference_steps=50, guidance_scale=7):
     return results.images[0]
 
 # Gradio Interface
+description = """
+This demo utilizes the playgroundai/playground-v2.5-1024px-aesthetic by Playground, which is a text-to-image generative model capable of producing high-quality images.
+As a community effort, this demo was put together by AngryPenguin. Link to model: https://huggingface.co/playgroundai/playground-v2.5-1024px-aesthetic
+"""
+
 with gr.Blocks() as demo:
     gr.Markdown("## Playground-V2.5 Demo")
     with gr.Row():
