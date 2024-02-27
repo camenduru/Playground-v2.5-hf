@@ -1,5 +1,6 @@
 transformers
-diffusers
 torch
 accelerate
 gradio
+git+https://github.com/huggingface/diffusers.git
+safetensors
