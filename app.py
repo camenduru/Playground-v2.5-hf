@@ -3,6 +3,7 @@ import torch
 from PIL import Image
 from diffusers import DiffusionPipeline
 import os
+import spaces
 
 # Constants
 #SAFETY_CHECKER = os.environ.get("SAFETY_CHECKER", "0") == "1"
@@ -18,6 +19,7 @@ pipe = DiffusionPipeline.from_pretrained(
 #if SAFETY_CHECKER:
     # Implement or import the safety checker code here
 
+@spaces.GPU(enable_queue=True)
 def generate_image(prompt, num_inference_steps=50, guidance_scale=7):
     # Generate image
     results = pipe(prompt=prompt, num_inference_steps=num_inference_steps, guidance_scale=guidance_scale)
